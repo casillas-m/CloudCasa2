@@ -46,24 +46,41 @@ router.route('/libre').post((req, res) => {
   //Content-Type: application/json
   let operation = req.body.operation
   let free = operation.split(" ")
-  let free2
   free.forEach((e,i)=>{if(!isNaN(e)) free[i]=Number(e)})
-  console.log(free)
-  free.forEach((e,i)=>{
-    console.log(free)
-    if(e=='*'){
-    free[i-1] = free[i-1] * free[i+1]
-    free.splice(i,2)
-  }else if(e=="/"){
-    free[i-1] = free[i-1] / free[i+1]
-    free.splice(i,2)
+  let i = 0
+  while (i<free.length) {
+    if(free[i]=='*'){
+      free[i-1] = free[i-1] * free[i+1]
+      free.splice(i,2)
+    }else if(free[i]=="/"){
+      free[i-1] = free[i-1] / free[i+1]
+      free.splice(i,2)
+    } else{
+      i++
+    }
   }
-}); //[56,  '*', 10,  '-', 8, '*', 15,  '/', 5,   '+', 8]
-  free.forEach((e,i)=>{if(!isNaN(e)) free[i]=Number(e)})
-  
-  console.log(free)
-  let respuesta=0;
+  i = 0
+  while (i<free.length) {
+    if(free[i]=='+'){
+      free[i-1] = free[i-1] + free[i+1]
+      free.splice(i,2)
+    }else if(free[i]=="-"){
+      free[i-1] = free[i-1] - free[i+1]
+      free.splice(i,2)
+    } else{
+      i++
+    }
+  }
+  let respuesta=free[0];
   res.json({ respuesta });
+})
+
+router.route('/autores').get((req, res) => {
+  //Content-Type: application/json
+  res.json({
+    autor1: "MMM",
+    autor2: "MCR"
+  });
 })
 
 module.exports = router
