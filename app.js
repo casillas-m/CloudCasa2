@@ -13,7 +13,7 @@ const { json, urlencoded } = express
 const app = express()
 
 // definimos un puerto por el cual escucharemos peticiones
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 6969
 const HOST = process.env.HOST || "0.0.0.0"
 
 // configuraciones para nuestro server

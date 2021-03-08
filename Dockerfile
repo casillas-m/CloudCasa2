@@ -1,9 +1,9 @@
 # creamos una variable
-ARG PORT=8080
+ARG PORT=6969
 # traemos la imagen de node 12 con kernel de alpine
 FROM node:12-alpine
 # label para agregar metadatos
-LABEL autor="El Villa"
+LABEL autor="MMM y MCR"
 # cremos el directorio de la app
 WORKDIR /usr/src/app
 # copiamos el archivo a nuestra carpeta 
